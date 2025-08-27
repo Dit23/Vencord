@@ -1,0 +1,335 @@
+/* stylelint-disable declaration-empty-line-before */
+/* stylelint-disable no-descending-specificity */
+/* stylelint-disable selector-class-pattern */
+/* stylelint-disable shorthand-property-no-redundant-values */
+/* stylelint-disable rule-empty-line-before */
+
+/* Button Styles */
+.vc-untis-button {
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+}
+
+.vc-untis-button-content {
+    background-color: var(--background-secondary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1/1;
+    margin: 0 7px 7px 7px;
+    transition: background-color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-radius 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border-radius: 25px;
+}
+
+.vc-untis-button-content:hover {
+    background-color: #ff9400;
+    border-radius: 15px;
+}
+
+.vc-untis-button::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 43%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 4px;
+    box-shadow: 1px 0 2px white;
+    background-color: white;
+    border-radius: 1px 4px 4px 0;
+    transition: background-color 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        height 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        top 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        width 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        margin-left 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        box-shadow 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+
+}
+
+.vc-untis-button:hover::after {
+    height: 20px;
+    top: 43%;
+    width: 4px;
+    transform: translateY(-50%);
+    margin-left: -1px;
+    box-shadow: 1px 0 0 white;
+}
+
+
+.untis-button {
+    background: none;
+
+    /* Removes any default white background */
+    width: 28px;
+    height: 28px;
+    align-items: center;
+    color: var(--interactive-normal);
+    cursor: pointer;
+    transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: scale(1) rotate(0deg);
+}
+
+.vc-untis-button-content:active {
+    transform: translateY(1px);
+}
+
+.vc-untis-button-content:hover .untis-button {
+    color: var(--interactive-active);
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1) 500ms;
+    transform: rotate(10deg) scale(1.08);
+}
+
+.vc-untis-modal {
+    height: calc(100vh - 140px);
+    width: calc(100vw - 140px);
+    max-width: 100%;
+    max-height: 100%;
+    background: color-mix(in srgb, var(--background-primary), transparent 75%);
+    backdrop-filter: blur(5px);
+    border-radius: 25px !important;
+    overflow-y: scroll;
+    border: none !important;
+    padding: 20px;
+
+    /* Hide scrollbar */
+    scrollbar-width: none;
+
+    /* For Firefox */
+    -ms-overflow-style: none;
+
+    /* For Internet Explorer and Edge */
+}
+
+.vc-untis-modal::-webkit-scrollbar {
+    display: none;
+
+    /* For Chrome, Safari, and Opera */
+}
+
+.vc-untis-modal-grid {
+    border-collapse: collapse;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    color: var(--text-default);
+    font-size: 18px;
+    font-family: sans-serif;
+}
+
+.vc-untis-modal-grid th {
+    background-color: color-mix(in srgb, var(--background-primary), transparent 50%);
+    border-radius: 25px !important;
+    transform: scale(0.9);
+    padding: 10px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* first-column */
+.vc-untis-modal-grid th:first-child {
+    width: 100px;
+}
+
+.vc-untis-modal-grid td:first-child {
+    background-color: color-mix(in srgb, var(--background-primary), transparent 75%);
+    border-radius: 25px !important;
+    transform: scale(0.9);
+
+    vertical-align: middle;
+    text-align: center;
+}
+
+.vc-untis-modal nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    margin: 0 0 10px 0;
+    background-color: color-mix(in srgb, var(--background-primary), transparent 50%);
+    border-radius: 25px !important;
+    gap: 10px;
+}
+
+.vc-untis-modal-button,
+.vc-untis-modal-input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: transparent;
+    color: var(--text-default);
+    font-size: 18px;
+    font-family: sans-serif;
+    text-align: center;
+    transition: background-color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-radius 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.vc-untis-modal-button:hover,
+.vc-untis-modal-input:hover {
+    background-color: color-mix(in srgb, var(--text-default), transparent 95%);
+    border-radius: 25px !important;
+    box-shadow: 0 0 10px color-mix(in srgb, var(--text-default), transparent 95%);
+}
+
+.vc-untis-modal-periods {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.vc-untis-modal-periods div {
+    width: 100%;
+    height: 100%;
+    border: none;
+    color: var(--text-default);
+    font-size: 18px;
+    font-family: sans-serif;
+    text-align: center;
+    background-color: color-mix(in srgb, var(--background-primary), transparent 70%);
+    scale: 0.9;
+    border-radius: 25px !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    transition: background-color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), scale 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.vc-untis-modal-periods div:hover {
+    scale: 1;
+    background-color: color-mix(in srgb, var(--text-default), transparent 95%);
+    opacity: 1;
+    cursor: pointer;
+}
+
+.vc-untis-modal-periods-past div {
+    opacity: 0.3;
+}
+
+.vc-untis-modal-periods-current div {
+    animation: gradientMove 20s infinite linear;
+    opacity: 0.7;
+    background: linear-gradient(90deg,
+            rgba(255, 0, 0, 0.7),
+            rgba(255, 165, 0, 0.7),
+            rgba(255, 255, 0, 0.7),
+            rgba(0, 255, 0, 0.7),
+            rgba(0, 255, 255, 0.7),
+            rgba(0, 0, 255, 0.7),
+            rgba(128, 0, 128, 0.7),
+            rgba(255, 0, 0, 0.7));
+    background-size: 400% 100%;
+
+
+}
+
+.vc-untis-modal-periods-current div::before {
+    content: '';
+    position: absolute;
+    inset: -5px -4px -5px -4px;
+    border: 5px solid blue;
+    border-radius: 30px;
+
+    /* Match the border radius of the parent if any */
+    animation: scaleOutline 2s infinite ease-in-out;
+    pointer-events: none;
+
+    /* Ensure it doesn’t interfere with clicks */
+
+}
+
+/* stylelint-disable-next-line keyframes-name-pattern */
+@keyframes scaleOutline {
+    0% {
+        transform: scale(1.02);
+    }
+
+    50% {
+        transform: scale(1.03);
+
+        /* Slightly larger outline */
+    }
+
+    100% {
+        transform: scale(1.02);
+    }
+}
+
+/* stylelint-disable-next-line keyframes-name-pattern */
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 400% 50%;
+    }
+}
+
+.vc-untis-modal-period.CANCELLED p:not(:empty) {
+    background-color: color-mix(in srgb, color-mix(in srgb, var(--background-primary), transparent 50%), rgba(255, 0, 0, 0.518) 50%);
+    border-radius: 25px !important;
+    transform: scale(0.9);
+    padding: 10px;
+    margin: 0;
+}
+
+.vc-untis-modal-period.IRREGULAR p:not(:empty) {
+    background-color: color-mix(in srgb, color-mix(in srgb, var(--background-primary), transparent 50%), rgba(0, 255, 0, 0.559) 50%);
+    border-radius: 25px !important;
+    transform: scale(0.9);
+    padding: 10px;
+    margin: 0;
+}
+
+.vc-untis-single-lesson-modal {
+    background-color: color-mix(in srgb, var(--background-primary), transparent 50%);
+    border-radius: 25px !important;
+    box-shadow: 0 0 10px color-mix(in srgb, var(--background-primary), transparent 25%);
+    transform: scale(0.9);
+    padding: 20px;
+    border: none !important;
+    color: var(--text-default);
+    font-size: 18px;
+    font-family: sans-serif;
+}
+
+.vc-untis-single-lesson-modal.CANCELLED {
+    background-color: color-mix(in srgb, color-mix(in srgb, var(--background-primary), transparent 50%), red 7%);
+}
+
+.vc-untis-single-lesson-modal.IRREGULAR {
+    background-color: color-mix(in srgb, color-mix(in srgb, var(--background-primary), transparent 50%), yellow 7%);
+}
+
+.vc-untis-single-lesson-modal h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+    border-bottom: 2px solid var(--text-default);
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.vc-untis-single-lesson-text {
+    font-size: 18px;
+    margin: 0 0 10px 0;
+    text-align: center;
+}
+
+.vc-untis-single-lesson-homework {
+    font-size: 18px;
+    margin: 0 0 10px 0;
+    text-align: center;
+    background-color: color-mix(in srgb, var(--background-primary), transparent 50%);
+    border-radius: 25px !important;
+    padding: 10px;
+    box-shadow: 0 0 10px color-mix(in srgb, var(--background-primary), transparent 25%);
+}

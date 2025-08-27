@@ -1,0 +1,194 @@
+@font-face {
+    font-family: Monocraft;
+    src: url("https://github.com/IdreesInc/Monocraft/releases/download/v4.0/Monocraft.ttc");
+}
+
+.vc-hglabor-ui {
+    background-color: #1a1a1a;
+    color: #fff;
+    padding: 10px;
+    margin: 10px 0;
+    overflow-y: auto;
+    font-family: Monocraft, monospace;
+    min-width: fit-content;
+}
+
+.vc-hglabor-ui::-webkit-scrollbar {
+    width: 10px;
+}
+
+.vc-hglabor-ui::-webkit-scrollbar-thumb {
+    background-color: #333;
+    border-radius: 5px;
+}
+
+.vc-hglabor-ui::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.vc-hglabor-ui h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 1.5em;
+}
+
+#norisk-logo {
+    image-rendering: pixelated;
+    animation: logo 4s infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes logo {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(0.9);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.vc-hglabor-ui table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.vc-hglabor-ui th {
+    text-align: left;
+    padding: 5px 10px;
+    border-bottom: 1px solid #333;
+}
+
+.vc-hglabor-ui td {
+    padding: 5px 10px;
+    border-bottom: 1px solid #333;
+}
+
+.vc-user-hglabor-ui img {
+    width: 128px;
+    image-rendering: pixelated;
+}
+
+.vc-hglabor-ui td img {
+    width: 16px;
+    height: 16px;
+    image-rendering: pixelated;
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.vc-hglabor-ui tr:hover td img {
+    transform: scale(1.5);
+}
+
+.vc-hglabor-ui tr:last-child td {
+    border-bottom: none;
+}
+
+.vc-hglabor-ui tr:hover {
+    background-color: #333;
+}
+
+.vc-hglabor-ui tr:hover td {
+    color: #fff;
+}
+
+.vc-hglabor-ui tr:hover td:first-child {
+    font-weight: bold;
+}
+
+
+.vc-user-hglabor-ui {
+    background-color: #1a1a1a;
+    color: #fff;
+    padding: 10px;
+    margin: 10px 0;
+    overflow-y: auto;
+    font-family: Monocraft, monospace;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    min-width: fit-content;
+}
+
+.vc-user-hglabor-ui::-webkit-scrollbar {
+    width: 10px;
+}
+
+.vc-user-hglabor-ui::-webkit-scrollbar-thumb {
+    background-color: #333;
+    border-radius: 5px;
+}
+
+.vc-user-hglabor-ui::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.pagination-controls button {
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: Monocraft, monospace;
+}
+
+.pagination-controls button:disabled {
+    background-color: #666;
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+.pagination-controls button:hover:not(:disabled) {
+    background-color: #444;
+}
+
+.pagination-controls span {
+    font-weight: bold;
+}
+
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+    min-height: 100px;
+}
+
+.loading-spinner::before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    border: 2px solid #fff;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-spinner:hover {
+    cursor: wait;
+}
