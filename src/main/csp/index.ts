@@ -64,6 +64,7 @@ export const CspPolicies: PolicyMap = {
     "usrbg.is-hardly.online": ImageSrc, // USRBG API
     "icons.duckduckgo.com": ImageSrc, // DuckDuckGo Favicon API (Reverse Image Search)
     "arche.webuntis.com": ConnectSrc, // WebUntis API
+    "mese.webuntis.com": ConnectSrc, // WebUntis API
     "norisk.gg": ConnectSrc, // NoRisk API
     "playerdb.co": ConnectSrc, // NoRisk API
     "crafthead.net": ImageSrc, // NoRisk API
