@@ -470,10 +470,10 @@ const UntisModalContent = ({ rootProps }: { rootProps: ModalProps; }) => {
                                     <td key={`${day.day}-${index}`}>
                                         {periods && periods.length > 0 ? (
                                             <div
-                                                className={`vc-untis-modal-periods ${new Date(periods[0].endDateTime).getTime() - 1000 * 60 * 60 * 2 < Date.now()
+                                                className={`vc-untis-modal-periods ${new Date(periods[0].endDateTime).getTime() - 1000 * 60 * 60 * 1 < Date.now()
                                                     ? "vc-untis-modal-periods-past"
-                                                    : new Date(periods[0].startDateTime).getTime() - 1000 * 60 * 60 * 2 <= Date.now() &&
-                                                        new Date(periods[0].endDateTime).getTime() - 1000 * 60 * 60 * 2 > Date.now()
+                                                    : new Date(periods[0].startDateTime).getTime() - 1000 * 60 * 60 * 1 <= Date.now() &&
+                                                        new Date(periods[0].endDateTime).getTime() - 1000 * 60 * 60 * 1 > Date.now()
                                                         ? "vc-untis-modal-periods-current"
                                                         : ""
                                                     }`}
