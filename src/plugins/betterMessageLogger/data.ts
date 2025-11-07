@@ -81,7 +81,7 @@ export function clearChannelMessages(channelId: string) {
     messageStore = Object.fromEntries(
         Object.entries(messageStore).filter(([, msg]) => msg.channelId !== channelId)
     );
-    settings.store.messageStore = messageStore;
+    debouncedSave();
 }
 
 export function getAllMessages(): LoggedMessage[] {

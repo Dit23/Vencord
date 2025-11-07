@@ -45,6 +45,24 @@ interface MLMessage extends Message {
 
 const styles = findByPropsLazy("edited", "communicationDisabled", "isSystemMessage");
 
+// Memoization cache for parsed comma-separated lists
+const parsedListsCache = {
+    ignoreUsers: { value: "", parsed: [] as string[] },
+    ignoreGuilds: { value: "", parsed: [] as string[] },
+    channelList: { value: "", parsed: [] as string[] }
+};
+
+function parseList(value: string, cacheKey: keyof typeof parsedListsCache): string[] {
+    const cache = parsedListsCache[cacheKey];
+    if (cache.value === value) {
+        return cache.parsed;
+    }
+    const parsed = value ? value.split(",").map(s => s.trim()).filter(Boolean) : [];
+    cache.value = value;
+    cache.parsed = parsed;
+    return parsed;
+}
+
 function addDeleteStyle() {
     if (settings.store.deleteStyle === "text") {
         enableStyle(textStyle);
@@ -277,10 +295,10 @@ export default definePlugin({
             if (ignoreSelf && message.author?.id === myId) return true;
             if (isEdit ? !logEdits : !logDeletes) return true;
 
-            // Parse comma-separated lists once
-            const ignoreUsersList = ignoreUsers ? ignoreUsers.split(",").map(s => s.trim()).filter(Boolean) : [];
-            const ignoreGuildsList = ignoreGuilds ? ignoreGuilds.split(",").map(s => s.trim()).filter(Boolean) : [];
-            const channelsList = channelList ? channelList.split(",").map(s => s.trim()).filter(Boolean) : [];
+            // Use memoized parsed lists
+            const ignoreUsersList = parseList(ignoreUsers || "", "ignoreUsers");
+            const ignoreGuildsList = parseList(ignoreGuilds || "", "ignoreGuilds");
+            const channelsList = parseList(channelList || "", "channelList");
 
             if (ignoreUsersList.includes(message.author?.id)) return true;
             if (ignoreGuildsList.includes(ChannelStore.getChannel(message.channel_id)?.guild_id)) return true;
