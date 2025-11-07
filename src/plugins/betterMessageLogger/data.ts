@@ -6,7 +6,7 @@
 
 import { useForceUpdater } from "@utils/react";
 
-import { settings } from "./index";
+import { settings } from "./settings";
 
 export interface LoggedMessage {
     id: string;
