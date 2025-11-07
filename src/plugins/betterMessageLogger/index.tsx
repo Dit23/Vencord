@@ -275,24 +275,31 @@ export default definePlugin({
             // Check basic ignore conditions
             if (ignoreBots && message.author?.bot) return true;
             if (ignoreSelf && message.author?.id === myId) return true;
-            if (ignoreUsers && ignoreUsers.split(",").map(s => s.trim()).includes(message.author?.id)) return true;
             if (isEdit ? !logEdits : !logDeletes) return true;
-            if (ignoreGuilds && ignoreGuilds.split(",").map(s => s.trim()).includes(ChannelStore.getChannel(message.channel_id)?.guild_id)) return true;
+
+            // Parse comma-separated lists once
+            const ignoreUsersList = ignoreUsers ? ignoreUsers.split(",").map(s => s.trim()).filter(Boolean) : [];
+            const ignoreGuildsList = ignoreGuilds ? ignoreGuilds.split(",").map(s => s.trim()).filter(Boolean) : [];
+            const channelsList = channelList ? channelList.split(",").map(s => s.trim()).filter(Boolean) : [];
+
+            if (ignoreUsersList.includes(message.author?.id)) return true;
+            if (ignoreGuildsList.includes(ChannelStore.getChannel(message.channel_id)?.guild_id)) return true;
 
             // Ignore Venbot in the support channels
             if (message.author?.id === VENBOT_USER_ID && ChannelStore.getChannel(message.channel_id)?.parent_id === SUPPORT_CATEGORY_ID) return true;
 
             // WhiteList/BlackList logic
-            const channels = channelList ? channelList.split(",").map(s => s.trim()) : [];
             const channelId = message.channel_id;
             const parentId = ChannelStore.getChannel(channelId)?.parent_id;
 
             if (filterMode === FilterMode.Whitelist) {
-                // Whitelist: only log if channel is in the list
-                return !channels.includes(channelId) && !channels.includes(parentId);
+                // Whitelist: only log if channel or its parent is in the list
+                const isInList = channelsList.includes(channelId) || (parentId && channelsList.includes(parentId));
+                return !isInList;
             } else {
-                // Blacklist: log unless channel is in the list
-                return channels.includes(channelId) || channels.includes(parentId);
+                // Blacklist: log unless channel or its parent is in the list
+                const isInList = channelsList.includes(channelId) || (parentId && channelsList.includes(parentId));
+                return isInList;
             }
         } catch (e) {
             return false;

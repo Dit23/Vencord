@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
+import { debounce } from "@shared/debounce";
 import { useForceUpdater } from "@utils/react";
 
 import { settings } from "./settings";
@@ -24,6 +25,11 @@ export interface LoggedMessage {
 let forceUpdateMessages: (() => void) | undefined = undefined;
 export let messageStore: Record<string, LoggedMessage> = {};
 
+// Debounced save to avoid excessive writes to storage
+const debouncedSave = debounce(() => {
+    settings.store.messageStore = messageStore;
+}, 1000);
+
 export async function init() {
     messageStore = settings.store.messageStore ?? {};
     forceUpdateMessages?.();
@@ -36,7 +42,7 @@ export function useMessageLogger() {
 
 export function saveMessage(message: LoggedMessage) {
     messageStore[message.id] = message;
-    settings.store.messageStore = messageStore;
+    debouncedSave();
 }
 
 export function getMessage(messageId: string): LoggedMessage | undefined {
@@ -48,7 +54,7 @@ export function deleteMessage(messageId: string) {
     if (message) {
         message.deleted = true;
         message.deletedTimestamp = Date.now();
-        settings.store.messageStore = messageStore;
+        debouncedSave();
     }
 }
 
@@ -56,13 +62,13 @@ export function updateMessage(messageId: string, updates: Partial<LoggedMessage>
     const message = messageStore[messageId];
     if (message) {
         Object.assign(message, updates);
-        settings.store.messageStore = messageStore;
+        debouncedSave();
     }
 }
 
 export function removeMessage(messageId: string) {
     delete messageStore[messageId];
-    settings.store.messageStore = messageStore;
+    debouncedSave();
 }
 
 export function clearAllMessages() {
@@ -71,11 +77,10 @@ export function clearAllMessages() {
 }
 
 export function clearChannelMessages(channelId: string) {
-    Object.keys(messageStore).forEach(id => {
-        if (messageStore[id].channelId === channelId) {
-            delete messageStore[id];
-        }
-    });
+    // More efficient: filter and reconstruct instead of delete in loop
+    messageStore = Object.fromEntries(
+        Object.entries(messageStore).filter(([, msg]) => msg.channelId !== channelId)
+    );
     settings.store.messageStore = messageStore;
 }
 
